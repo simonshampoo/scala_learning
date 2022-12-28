@@ -27,7 +27,8 @@ def map [X, Y](xs: List[X], f:X=>Y): List[Y] = {
 def filter [X](xs: List[X], f:X=>Boolean): List[X] = {
   xs match {
     case Nil => Nil
-    case y::ys => if (f(y)) y::filter(ys, f) else filter(ys,f)
+    case y::ys if (f(y)) => y::filter(ys, f) 
+    case _::ys => filter(ys,f)
   }
 }
 
