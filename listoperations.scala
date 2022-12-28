@@ -11,7 +11,7 @@ def foreach [X](xs: List[X], f:X => Unit ): Unit = {
   xs match {
     case Nil => () 
     case y::ys => {
-      f(y)
+      f(y);
       foreach(ys, f)
     }
   }
