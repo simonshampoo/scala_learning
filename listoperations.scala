@@ -24,27 +24,40 @@ def map [X, Y](xs: List[X], f:X=>Y): List[Y] = {
    }
 }
 
+def filter [X](xs: List[X], f:X=>Boolean): List[X] = {
+  xs match {
+    case Nil => Nil
+    case y::ys => if (f(y)) y::filter(ys, f) else filter(ys,f)
+  }
+}
+
+
 
 var l = List(1, 2, 3, 4, 5)
 
-println("Testing transform function")
+println("## TRANSFORM ##")
 println(l)
-transform(l)
-println(l)
+println(transform(l))
 
 
 println()
 
-
-println("Testing foreach function")
+println(s"## FOREACH ## with function println")
 println(l)
 foreach(l, (x: Int) => println(x))
-println(l)
 
 
 println()
 
 
-println("Testing map function")
+println("## MAP ## with function (x: Int) => x + 1")
 println(l)
 println(map(l, (x: Int) => x + 1))
+
+
+println()
+
+
+println("## FILTER ## with function (x:Int) => x % 2 == 0")
+println(l)
+println(filter(l, (x:Int) => x % 2 == 0))
