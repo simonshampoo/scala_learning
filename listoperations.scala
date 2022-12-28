@@ -1,7 +1,6 @@
 def transform(xs: List[Int]): List[String] = {
   xs match {
-    case Nil => 
-       Nil
+    case Nil => Nil
     case y::ys => 
         ("%02d".format(y)) :: transform(ys)
   }
@@ -10,7 +9,7 @@ def transform(xs: List[Int]): List[String] = {
 // apply a function on each member of a List
 def foreach [X](xs: List[X], f:X => Unit ): Unit = {
   xs match {
-    case Nil => Nil 
+    case Nil => () 
     case y::ys => {
       f(y)
       foreach(ys, f)
@@ -21,9 +20,8 @@ def foreach [X](xs: List[X], f:X => Unit ): Unit = {
 def map [X, Y](xs: List[X], f:X=>Y): List[Y] = {
    xs match {
     case Nil => Nil 
-    case y::ys => 
-      f(y) :: map (ys, f)
-  }
+    case y::ys => f(y) :: map (ys, f) 
+   }
 }
 
 
@@ -33,7 +31,6 @@ println("Testing transform function")
 println(l)
 transform(l)
 println(l)
-println(l(0).getClass)
 
 
 println()
@@ -50,5 +47,4 @@ println()
 
 println("Testing map function")
 println(l)
-val newL = map(l, (x: Int) => x + 1)
-println(newL)
+println(map(l, (x: Int) => x + 1))
